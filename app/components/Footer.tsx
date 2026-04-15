@@ -11,10 +11,29 @@ const therapies = [
 ];
 
 const supports = [
-  { name: "Book Appointment", href: "/book" },
-  { name: "Donate Session", href: "/donate" },
-  { name: "Contact Us", href: "/contact" },
-  { name: "FAQs", href: "/faq" },
+  { name: "Book Appointment", href: "/booking" },
+  { name: "Donate Session", href: "/booking" },
+  { name: "Contact Us", href: "/about" },
+  { name: "FAQs", href: "/home" },
+];
+
+// --- REAL SOCIAL LINKS ---
+const socialLinks = [
+  { 
+    name: "YouTube", 
+    href: "https://www.youtube.com/@REHABLITO", 
+    icon: <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> 
+  },
+  { 
+    name: "Instagram", 
+    href: "https://www.instagram.com/rehablito/", 
+    icon: <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> 
+  },
+  { 
+    name: "Facebook", 
+    href: "https://www.facebook.com/desire.physio/", 
+    icon: <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24h11.495v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.597 1.323-1.324V1.325C24 .597 23.403 0 22.675 0z"/></svg> 
+  }
 ];
 
 export default function Footer() {
@@ -50,7 +69,7 @@ export default function Footer() {
 
             <div className="flex flex-col items-center md:items-end gap-3 relative z-10">
               <Link 
-                href="/book" 
+                href="/booking" 
                 className="group/btn relative px-10 py-5 bg-white text-[#1A2E44] rounded-2xl font-black text-lg transition-all hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:scale-[1.02] active:scale-95 flex items-center gap-3"
               >
                 Schedule Appointment
@@ -74,9 +93,9 @@ export default function Footer() {
 
         {/* --- MAIN FOOTER CONTENT --- */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
-          <div className="lg:col-span-5 space-y-8">
+          <div className="lg:col-span-5 space-y-8 text-center lg:text-left">
             <Link href="/" className="group inline-block">
-              <div className="text-3xl font-black tracking-tighter flex items-center">
+              <div className="text-3xl font-black tracking-tighter flex items-center justify-center lg:justify-start">
                 <span className="text-[#E32636]">R</span>
                 <span className="text-[#F28500]">e</span>
                 <span className="text-[#FFD700]">h</span>
@@ -86,26 +105,36 @@ export default function Footer() {
                 <div className="w-2 h-2 bg-[#00AEEF] rounded-full ml-1" />
               </div>
             </Link>
-            <p className="text-lg leading-relaxed text-slate-500 max-w-sm">
+            <p className="text-lg leading-relaxed text-slate-500 max-w-sm mx-auto lg:mx-0">
               Science-backed therapy for meaningful life changes. Leading Speech & Autism care in Uttar Pradesh.
             </p>
-            <div className="flex gap-4">
-              {['WhatsApp', 'Instagram', 'Facebook'].map((item) => (
-                <Link key={item} href="#" className="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-[#00AEEF] hover:text-white transition-all duration-500">
-                   <div className="w-5 h-5 bg-current" />
-                </Link>
+            
+            {/* UPDATED SOCIAL LINKS MAP */}
+            <div className="flex gap-4 justify-center lg:justify-start">
+              {socialLinks.map((item) => (
+                <a 
+                  key={item.name} 
+                  href={item.href} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  title={item.name}
+                  className="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-[#00AEEF] hover:text-white hover:scale-110 transition-all duration-300 shadow-sm"
+                >
+                   {item.icon}
+                </a>
               ))}
             </div>
+
           </div>
 
-          <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12">
+          <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12 text-center sm:text-left">
             <div className="space-y-6">
               <h4 className="text-white font-black text-xs uppercase tracking-[0.3em] opacity-50">Our Expertise</h4>
               <ul className="space-y-4">
                 {therapies.map(t => (
                   <li key={t.name}>
-                    <Link href={t.href} className="text-slate-500 hover:text-[#00AEEF] transition-all text-sm font-bold flex items-center gap-2 group">
-                      <div className="w-1.5 h-[1px] bg-blue-600 transition-all group-hover:w-4" />
+                    <Link href={t.href} className="text-slate-500 hover:text-[#00AEEF] transition-all text-sm font-bold flex items-center justify-center sm:justify-start gap-2 group">
+                      <div className="hidden sm:block w-1.5 h-[1px] bg-blue-600 transition-all group-hover:w-4" />
                       {t.name}
                     </Link>
                   </li>
@@ -127,10 +156,14 @@ export default function Footer() {
             <div className="col-span-2 md:col-span-1 space-y-6">
               <h4 className="text-white font-black text-xs uppercase tracking-[0.3em] opacity-50">Contact Hub</h4>
               <div className="space-y-4">
-                <Link href="tel:8271586892" className="text-2xl font-black text-white block hover:text-[#00AEEF] transition-all tracking-tighter leading-none">
-                  +91 82715 86892
-                </Link>
-                <p className="text-xs font-bold uppercase tracking-widest text-[#00AEEF]">Support@rehablito.com</p>
+                {/* UPDATED PHONE NUMBER */}
+                <a href="tel:9204786220" className="text-2xl font-black text-white block hover:text-[#00AEEF] transition-all tracking-tighter leading-none">
+                  +91 92047 86220
+                </a>
+                {/* UPDATED EMAIL ADDRESS */}
+                <a href="mailto:rehablito@gmail.com" className="text-xs font-bold uppercase tracking-widest text-[#00AEEF] hover:text-white transition-colors block">
+                  rehablito@gmail.com
+                </a>
               </div>
             </div>
           </div>
@@ -138,16 +171,17 @@ export default function Footer() {
 
         {/* --- DYNAMIC COPYRIGHT & CREDITS --- */}
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8">
-          <p className="text-[10px] font-black text-slate-700 uppercase tracking-[0.3em]">© 2026 Rehablito Autism Center</p>
+          <p className="text-[10px] font-black text-slate-700 uppercase tracking-[0.3em] text-center md:text-left">© 2026 Rehablito Autism Center</p>
           
-          <Link 
+          <a 
             href="https://codewebx.in" 
             target="_blank"
+            rel="noopener noreferrer"
             className="group flex items-center gap-4 px-6 py-2.5 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-[#00AEEF]/50 transition-all"
           >
              <span className="text-[10px] font-bold text-slate-600 group-hover:text-white transition-colors uppercase tracking-widest">Built with precision by</span>
              <span className="text-xs font-black text-white group-hover:text-[#00AEEF] transition-colors">CodeWebX.in</span>
-          </Link>
+          </a>
         </div>
       </div>
     </footer>

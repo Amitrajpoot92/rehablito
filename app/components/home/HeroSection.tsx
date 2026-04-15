@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 // 1. REHABLITO LOGO (High-End Wave Animation)
 const RehablitoLogo = () => {
   const letters = "Rehablito".split("");
-  const colors = ["#E32636", "#F28500", "#FFD700", "#8CBF3F", "#00AEEF", "#E91E63", "#E91E63", "#1B6CA8", "#FFD700"];
+  const colors = ["#ff0015", "#F28500", "#FFD700", "#3fbf54", "#00AEEF", "#fa0758", "#6366F1", "#FFD700", "#FFD700"];
   return (
     <div className="flex space-x-1 lg:space-x-2 mb-4 lg:mb-6 justify-center lg:justify-start relative z-10">
       {letters.map((char, i) => (
@@ -64,17 +64,17 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {/* Mobile: Exact Tircha Curve (Diagonal Wave) as requested */}
         <div 
-            className="absolute top-0 left-0 w-full h-[60%] sm:h-[55%] bg-[#0A0F1C] block lg:hidden shadow-2xl"
+            className="absolute top-0 left-0 w-full h-[60%] sm:h-[55%] bg-[#1D3F61] block lg:hidden shadow-2xl"
             style={{ clipPath: 'polygon(0 0, 100% 0, 100% 65%, 0 100%)' }}
         ></div>
         
         {/* Laptop: Architectural Diagonal */}
-        <div className="absolute top-0 right-0 w-full h-full bg-[#0A0F1C] hidden lg:block shadow-2xl"
+        <div className="absolute top-0 right-0 w-full h-full bg-[#274461] hidden lg:block shadow-2xl"
              style={{ clipPath: 'polygon(45% 0, 100% 0, 100% 100%, 75% 100%)' }}
         ></div>
         
         {/* Decorative Glow */}
-        <div className="absolute top-[20%] left-[-10%] w-96 h-96 bg-blue-100/40 blur-[120px] rounded-full pointer-events-none opacity-50"></div>
+        <div className="absolute top-[20%] left-[-10%] w-96 h-96 bg-blue-100/20 blur-[120px] rounded-full pointer-events-none opacity-50"></div>
       </div>
 
       {/* --- MAIN CONTENT --- */}
@@ -115,9 +115,13 @@ export default function HeroSection() {
               <span className="text-slate-500 text-[10px] font-bold tracking-[0.2em] uppercase">Trusted by 2,400+ Families</span>
             </div>
 
-            <h1 className="text-4xl lg:text-7xl font-black text-[#1A2E44] leading-tight lg:leading-[1.1] tracking-tighter mb-6">
-              Care That Makes <br className="hidden lg:block" />
-              a <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1B6CA8] to-[#00AEEF] animate-pulse font-black">Difference.</span>
+            <h1 className="text-4xl lg:text-7xl font-black text-[#1b6ba8] leading-tight lg:leading-[1.1] tracking-tighter mb-6">
+              <span style={{ WebkitTextStroke: '1.5px white' }}>
+                Care That Makes <br className="hidden lg:block" /> a
+              </span>{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1B6CA8] to-[#00AEEF] animate-pulse font-black">
+                Difference.
+              </span>
             </h1>
 
             <p className="text-base lg:text-2xl text-slate-400 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed mb-10 px-2 lg:px-0">
@@ -125,7 +129,7 @@ export default function HeroSection() {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center gap-5 justify-center lg:justify-start px-4">
-              <Link href="/book" className="group relative w-full sm:w-auto">
+              <Link href="/booking" className="group relative w-full sm:w-auto">
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#1B6CA8] to-[#00AEEF] rounded-[2rem] blur opacity-20 group-hover:opacity-60 transition duration-300"></div>
                 <button className="relative w-full sm:w-auto bg-[#1B6CA8] text-white px-10 py-5 rounded-[2rem] text-lg font-bold flex items-center justify-center gap-3 active:scale-95 transition-all shadow-xl shadow-blue-500/10">
                   Book a Consultation

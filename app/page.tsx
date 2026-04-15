@@ -5,6 +5,7 @@ import ServicesSnapshot from "./components/home/ServicesSnapshot";
 import HowItWorks from "./components/home/HowItWorks";
 import StatsCounter from "./components/home/StatsCounter";
 import TestimonialCarousel from "./components/home/TestimonialCarousel";
+import Gallery from "./components/home/Gallary"; // <-- Yahan Gallery import kiya hai
 import DonationBanner from "./components/home/DonationBanner";
 
 export default function Home() {
@@ -17,6 +18,10 @@ export default function Home() {
       <HowItWorks />
       <StatsCounter />
       <TestimonialCarousel />
+      
+      {/* Yahan Gallery section add kiya hai */}
+      <Gallery /> 
+      
       <DonationBanner />
     </div>
   );

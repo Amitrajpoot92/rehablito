@@ -52,7 +52,7 @@ export default function DonationBanner() {
           
           <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
             <Link 
-              href="/donate" 
+              href="/booking" 
               className="group relative w-full sm:w-auto px-12 py-6 bg-orange-500 text-white rounded-2xl text-xl font-black transition-all hover:bg-orange-600 hover:shadow-[0_20px_40px_-10px_rgba(234,88,12,0.5)] active:scale-95 overflow-hidden text-center"
             >
               <span className="relative z-10">Donate Now</span>

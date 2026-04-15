@@ -127,14 +127,40 @@ export default function HowItWorks() {
                 </AnimatePresence>
               </div>
 
-              {/* NEXT STEP INDICATOR (Pure White Visibility) */}
-              <div className="flex flex-col items-center justify-center lg:w-1/3">
-                  <AnimatePresence mode="wait">
-                    {activeStep < 2 ? (
+              {/* --- NAVIGATION CONTROLS (PREV & NEXT) --- */}
+              <div className="flex items-end justify-center gap-6 lg:gap-10 lg:w-1/3">
+                  
+                  {/* PREVIOUS BUTTON */}
+                  <AnimatePresence mode="popLayout">
+                    {activeStep > 0 && (
+                      <motion.div 
+                        key="prev"
+                        initial={{ opacity: 0, scale: 0.9, x: 20 }}
+                        animate={{ opacity: 1, scale: 1, x: 0 }}
+                        exit={{ opacity: 0, scale: 0.9, x: 20 }}
+                        className="flex flex-col items-center gap-5 cursor-pointer group"
+                        onClick={() => setActiveStep(activeStep - 1)}
+                      >
+                         <div className="text-white font-black text-[10px] uppercase tracking-[0.4em] opacity-60 group-hover:opacity-100 transition-opacity">
+                            Go <span style={{ color: steps[activeStep - 1].color }}>Back</span>
+                         </div>
+                         <div className="w-16 h-16 rounded-full border-2 border-white/20 flex items-center justify-center group-hover:bg-white group-hover:border-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                            <svg className="w-7 h-7 text-white group-hover:text-[#0A0F1C] transition-colors animate-bounce-x-reverse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                         </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* NEXT BUTTON OR COMPLETED STATE */}
+                  <AnimatePresence mode="popLayout">
+                    {activeStep < steps.length - 1 ? (
                       <motion.div 
                         key="next"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, scale: 0.9, x: -20 }}
+                        animate={{ opacity: 1, scale: 1, x: 0 }}
+                        exit={{ opacity: 0, scale: 0.9, x: -20 }}
                         className="flex flex-col items-center gap-5 cursor-pointer group"
                         onClick={() => setActiveStep(activeStep + 1)}
                       >
@@ -142,7 +168,6 @@ export default function HowItWorks() {
                             Next Up: <span style={{ color: steps[activeStep + 1].color }}>{steps[activeStep].nextUp}</span>
                          </div>
                          <div className="w-16 h-16 rounded-full border-2 border-white/20 flex items-center justify-center group-hover:bg-white group-hover:border-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-                            {/* Pure White Arrow for High Visibility */}
                             <svg className="w-7 h-7 text-white group-hover:text-[#0A0F1C] transition-colors animate-bounce-x" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
@@ -150,15 +175,18 @@ export default function HowItWorks() {
                       </motion.div>
                     ) : (
                       <motion.div 
-                         initial={{ opacity: 0 }} 
-                         animate={{ opacity: 1 }}
-                         className="px-8 py-3 rounded-full bg-green-500/10 border border-green-500/20 text-green-500 font-bold text-xs uppercase tracking-[0.3em]"
+                         key="optimized"
+                         initial={{ opacity: 0, scale: 0.9 }} 
+                         animate={{ opacity: 1, scale: 1 }}
+                         exit={{ opacity: 0, scale: 0.9 }}
+                         className="px-8 py-3 rounded-full bg-green-500/10 border border-green-500/20 text-green-500 font-bold text-xs uppercase tracking-[0.3em] mb-4"
                       >
                          Path Optimized
                       </motion.div>
                     )}
                   </AnimatePresence>
               </div>
+
             </div>
 
             {/* Bottom Energy Progress Line */}
@@ -188,6 +216,15 @@ export default function HowItWorks() {
         }
         .animate-bounce-x {
           animation: bounce-x 1.2s infinite ease-in-out;
+        }
+        
+        /* New Animation For Left Arrow */
+        @keyframes bounce-x-reverse {
+          0%, 100% { transform: translateX(0) rotate(180deg); }
+          50% { transform: translateX(-10px) rotate(180deg); }
+        }
+        .animate-bounce-x-reverse {
+          animation: bounce-x-reverse 1.2s infinite ease-in-out;
         }
       `}</style>
     </section>

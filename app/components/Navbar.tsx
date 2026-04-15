@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 
 const navLinks = [
@@ -14,7 +15,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
-  const [activeTab, setActiveTab] = useState(0);
+  const pathname = usePathname(); // Get current active route
   const { scrollY } = useScroll();
 
   // Corrected Scroll Logic: Down = Hide, Up = Show
@@ -42,29 +43,46 @@ export default function Navbar() {
             {/* LOGO SECTION */}
             <Link href="/" className="group">
               <div className="text-2xl font-black tracking-tighter flex items-center">
-                <span className="text-[#E32636]">R</span>
+                {/* Yahan Logo Image Add Kiya Hai */}
+                <img src="/images/rehab-logo.png" alt="Rehablito Logo" className="w-8 h-8 mr-0 object-contain" />
+                <span className="text-[#ff0015]">R</span>
                 <span className="text-[#F28500]">e</span>
                 <span className="text-[#FFD700]">h</span>
                 <span className="text-[#8CBF3F]">a</span>
                 <span className="text-[#00AEEF]">b</span>
                 <span className="text-[#E91E63]">l</span>
                 <span className="text-[#6366F1]">i</span>
-                <span className="text-[#1A2E44]">t</span>
-                <span className="text-[#F28500]">o</span>
+                <span className="text-[#FFD700]">t</span>
+                <span className="text-[#FFD700]">o</span>
               </div>
             </Link>
 
             {/* LAPTOP NAVIGATION MENU (FIXED) */}
             <div className="hidden lg:flex items-center gap-2 bg-slate-50 p-1 rounded-full border border-slate-100">
-              {navLinks.map((link) => (
-                <Link 
-                  key={link.name} 
-                  href={link.href}
-                  className="px-6 py-2 rounded-full text-[14px] font-bold text-slate-600 hover:text-[#1A2E44] transition-all hover:bg-white"
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href; // Check if current route matches link
+
+                return (
+                  <Link 
+                    key={link.name} 
+                    href={link.href}
+                    className={`relative px-6 py-2 rounded-full text-[14px] font-bold transition-all ${
+                      isActive 
+                        ? "text-[#00AEEF] bg-white shadow-sm" // Active Styling
+                        : "text-slate-600 hover:text-[#1A2E44] hover:bg-white" // Inactive Styling
+                    }`}
+                  >
+                    {link.name}
+                    {/* Active Underline Line */}
+                    {isActive && (
+                      <motion.div 
+                        layoutId="desktop-active-line"
+                        className="absolute bottom-1 left-1/2 -translate-x-1/2 w-4 h-[3px] bg-[#00AEEF] rounded-full"
+                      />
+                    )}
+                  </Link>
+                );
+              })}
             </div>
 
             {/* ACTION BUTTONS */}
@@ -110,38 +128,41 @@ export default function Navbar() {
 
           {/* DOCK CONTENT (Sky Blue Theme) */}
           <div className="relative z-10 bg-[#E0F4FF] rounded-[2.4rem] px-2 py-3 flex items-center justify-around shadow-2xl backdrop-blur-xl">
-            {navLinks.map((link, i) => (
-              <Link 
-                key={link.name} 
-                href={link.href}
-                onClick={() => setActiveTab(i)}
-                className="relative flex-1 flex flex-col items-center group py-1"
-              >
-                <AnimatePresence>
-                  {activeTab === i && (
-                    <motion.div 
-                      layoutId="active-nav-pill"
-                      className="absolute inset-x-1 inset-y-[-2px] bg-white rounded-2xl z-0 shadow-sm"
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                    />
-                  )}
-                </AnimatePresence>
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href; // Check if current route matches link
 
-                <div className="relative z-10 flex flex-col items-center">
-                  <svg 
-                    className={`w-5 h-5 transition-colors duration-300 ${activeTab === i ? 'text-[#00AEEF]' : 'text-[#1B6CA8]/60 group-hover:text-[#1B6CA8]'}`} 
-                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d={link.icon} />
-                  </svg>
-                  <span 
-                    className={`text-[8px] font-black uppercase tracking-tighter mt-1 transition-colors ${activeTab === i ? 'text-[#00AEEF]' : 'text-[#1B6CA8]/50'}`}
-                  >
-                    {link.name}
-                  </span>
-                </div>
-              </Link>
-            ))}
+              return (
+                <Link 
+                  key={link.name} 
+                  href={link.href}
+                  className="relative flex-1 flex flex-col items-center group py-1"
+                >
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.div 
+                        layoutId="active-nav-pill"
+                        className="absolute inset-x-1 inset-y-[-2px] bg-white rounded-2xl z-0 shadow-sm"
+                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                  </AnimatePresence>
+
+                  <div className="relative z-10 flex flex-col items-center">
+                    <svg 
+                      className={`w-5 h-5 transition-colors duration-300 ${isActive ? 'text-[#00AEEF]' : 'text-[#1B6CA8]/60 group-hover:text-[#1B6CA8]'}`} 
+                      fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d={link.icon} />
+                    </svg>
+                    <span 
+                      className={`text-[8px] font-black uppercase tracking-tighter mt-1 transition-colors ${isActive ? 'text-[#00AEEF]' : 'text-[#1B6CA8]/50'}`}
+                    >
+                      {link.name}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </motion.div>
